@@ -3,10 +3,17 @@ import math
 
 def main():
     adjacencyMatrix = CreateAdjacencyMatrix()
-    distances = BFAlgorithmDist(adjacencyMatrix)
-    vertexData = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f'}
-    for i in range(1, 7):
-        print("Shortest distance to " + str(vertexData[i]) + "is: " + str(distances[i]))
+    pathData = BFAlgorithm(adjacencyMatrix)
+    if not pathData:
+        print("Error, there exists a negative cycle. ")
+    else:
+        print("No negative cycle exists. ")
+        vertexData = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f'}
+        for i in range(1, 7):
+            print("Shortest distance to " + str(vertexData[i]) + " is: " + str(pathData[0][i]))
+        for i in range(1, 7):
+            print("Path to " + str(vertexData[i]) + " is: " + str(pathData[1][i]))
+
 
 def CreateAdjacencyMatrix():
     size = 7
@@ -34,18 +41,42 @@ def CreateAdjacencyMatrix():
     return adjacencyMatrix
 
 
-def BFAlgorithmDist(Matrix):
+def BFAlgorithm(Matrix):
+    returnData = []
+    vertexData = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f'}
     D = []
+    P = []
+    for i in range(7):
+        P.append([])
+    for i in range(1, 7):
+        if Matrix[0][i] != math.inf:
+            P[i].append(vertexData[i])
     D.append(0)
     for i in range(1, 7):
         D.append(Matrix[0][i])
-    for i in range(6):
-        for j in range (7):
-            for k in range(1, 7):
-                if Matrix[0][j] + Matrix[j][k] < D[k]:
-                    D[k] = Matrix[0][j] + Matrix[j][k]
-    return D
+    for i in range(7):
+        for j in range(7):
+            for k in range(7):
+                if D[j] + Matrix[j][k] < D[k]:
+                    D[k] = D[j] + Matrix[j][k]
+                    if len(P[k]) != 0:
+                        P[k] = []
+                    if len(P[j]) != 0:
+                        for prev in range(len(P[j])):
+                            P[k].append(P[j][prev])
+                        P[k].append(vertexData[k])
+                    else:
+                        P[k].append(vertexData[j])
+                        P[k].append(vertexData[k])
+
+    for i in range(7):
+        for j in range(7):
+            if D[i] + Matrix[i][j] < D[j]:
+                return False
+
+    returnData.append(D)
+    returnData.append(P)
+    return returnData
 
 
 main()
-
