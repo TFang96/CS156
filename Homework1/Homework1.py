@@ -66,9 +66,9 @@ def BFAlgorithm(Matrix):
     for i in range(1, 7):
         D.append(Matrix[0][i])
     '''Loop through the graph V-1 times.'''
-    for i in range(6):
-        for j in range(7):
-            for k in range(7):
+    for i in range(len(Matrix)-1):
+        for j in range(len(Matrix)):
+            for k in range(len(Matrix)):
                 '''If we find a shorter path, we relax. '''
                 if D[j] + Matrix[j][k] < D[k]:
                     D[k] = D[j] + Matrix[j][k]
@@ -83,8 +83,8 @@ def BFAlgorithm(Matrix):
                         P[k].append(vertexData[j])
                         P[k].append(vertexData[k])
     '''This checks for any negative cycles. '''
-    for i in range(7):
-        for j in range(7):
+    for i in range(len(Matrix)):
+        for j in range(len(Matrix)):
             if D[i] + Matrix[i][j] < D[j]:
                 return False
     for i in range(len(P)):
