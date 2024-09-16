@@ -45,6 +45,16 @@ def depth_first_graph_search(problem):
     """
     frontier = [(Node(problem.initial))]  # Stack
     # YOUR CODE GOES HERE
+    explored = set()
+    while frontier:
+        top = frontier.pop()
+        if top not in explored:
+            explored.add(top.state)
+            if problem.goal_test(top.state):
+                return top
+        for action in problem.actions(top.state):
+            if action not in explored:
+                frontier.append(top.child_node(problem, action))
     return None
 
 

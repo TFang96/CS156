@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4013c2c9-17a2-498d-b83d-d2cc90c69bf6" name="Changes" comment="" />
+    <list default="true" id="4013c2c9-17a2-498d-b83d-d2cc90c69bf6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A3_ToDo.py" beforeDir="false" afterPath="$PROJECT_DIR$/A3_ToDo.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +42,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests for A3_Tests.test_breadth_first_graph_search.executor": "Run",
+    "Python tests.Python tests for A3_Tests.test_depth_first_graph_search.executor": "Run",
     "Python tests.Python tests in A3_Tests.py.executor": "Run",
     "Python.A3_ToDo.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -46,7 +50,7 @@
     "last_opened_file_path": "C:/Users/tf245/Documents/GitHub/CS156/Homework2"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for A3_Tests.test_breadth_first_graph_search">
+  <component name="RunManager" selected="Python tests.Python tests for A3_Tests.test_depth_first_graph_search">
     <configuration name="A3_ToDo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Homework2" />
       <option name="ENV_FILES" value="" />
@@ -85,6 +89,21 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for A3_Tests.test_depth_first_graph_search" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Homework2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;A3_Tests.test_depth_first_graph_search&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests in A3_Tests.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Homework2" />
       <option name="ENV_FILES" value="" />
@@ -103,6 +122,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for A3_Tests.test_depth_first_graph_search" />
         <item itemvalue="Python tests.Python tests for A3_Tests.test_breadth_first_graph_search" />
         <item itemvalue="Python tests.Python tests in A3_Tests.py" />
         <item itemvalue="Python.A3_ToDo" />
@@ -126,16 +146,5 @@
       <updated>1726441437826</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/A3_Tests.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
