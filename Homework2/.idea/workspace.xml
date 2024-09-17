@@ -50,7 +50,7 @@
     "last_opened_file_path": "C:/Users/tf245/Documents/GitHub/CS156/Homework2"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for A3_Tests.test_depth_first_graph_search">
+  <component name="RunManager" selected="Python tests.Python tests in A3_Tests.py">
     <configuration name="A3_ToDo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Homework2" />
       <option name="ENV_FILES" value="" />
@@ -122,9 +122,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in A3_Tests.py" />
         <item itemvalue="Python tests.Python tests for A3_Tests.test_depth_first_graph_search" />
         <item itemvalue="Python tests.Python tests for A3_Tests.test_breadth_first_graph_search" />
-        <item itemvalue="Python tests.Python tests in A3_Tests.py" />
         <item itemvalue="Python.A3_ToDo" />
       </list>
     </recent_temporary>
