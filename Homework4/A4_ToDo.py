@@ -26,8 +26,9 @@ def astar_search(problem, h=None):
     The tests check through a call to solution() function which returns a list of expanded cities along the path"""
 
     # YOUR CODE GOES HERE
-    frontier = [(0, Node(problem.initial))] # we begin with our start
     h = h or problem.h
+    f_value_initial = 0 + h(Node(problem.initial).state)
+    frontier = [(f_value_initial, Node(problem.initial))]  # we begin with our start
     explored = set() # contains the set of nodes we explore
 
     while frontier:
