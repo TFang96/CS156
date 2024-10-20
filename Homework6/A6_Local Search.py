@@ -61,11 +61,11 @@ def HillClimbWithSideways(time):
         cur_state = max(cur_state - 1, 1)
         point.set_data([cur_state], [df['Reward'][cur_state]])
         return point
-    elif df["Reward"][cur_state + 1] == df["Reward"][cur_state] and random.uniform(0, 1) < 0.5:
+    elif df["Reward"][cur_state + 1] == df["Reward"][cur_state] and random.uniform(0, 1) < 0.5: # move of equal utility
         cur_state = min(cur_state+1, 98)
         point.set_data([cur_state], [df['Reward'][cur_state]])
         return point
-    elif df["Reward"][cur_state - 1] == df["Reward"][cur_state] and random.uniform(0, 1) < 0.5:
+    elif df["Reward"][cur_state - 1] == df["Reward"][cur_state] and random.uniform(0, 1) < 0.5: # move of equal utility
         cur_state = max(cur_state-1, 1)
         point.set_data([cur_state], [df['Reward'][cur_state]])
         return point
@@ -79,35 +79,35 @@ def SimulatedAnnealing(time):
     #Use a linearly decreasing T , that is, T=T-1 every iteration.
     # The Algorithm must randomly select a neighbor with probability 0.5,
     # then allow downward moves with probability p
-    for t in range(1, 999999):
-        T = time
-        if T == 0:
-            point.set_data([cur_state], [df['Reward'][cur_state]])
-            return point
-        else:
-            nextMove = random.uniform(0, 1)
-            if nextMove < 0.5: ## we will check the neighbor prior to current
-                changeAmount = df["Reward"][cur_state-1] - df["Reward"][cur_state]
-                if changeAmount > 0: # this is a good move
-                    cur_state = max(cur_state - 1, 1)
+    global T
+    T -= 1 # decrement the temperature by 1 on each move
+    if T <= 0: # we are done
+        point.set_data([cur_state], [df['Reward'][cur_state]])
+        return point
+    else: # temperature is not yet at 0
+        nextMove = random.uniform(0, 1)
+        if nextMove < 0.5: ## we will check the neighbor prior to current
+            delta = df["Reward"][cur_state-1] - df["Reward"][cur_state] #calculate utility change (delta)
+            if delta > 0: # this is a good move
+                cur_state = max(cur_state - 1, 1)
+                point.set_data([cur_state], [df['Reward'][cur_state]])
+                return point
+            else: # bad move
+                if random.uniform(0, 1) < math.exp(delta/T): # only make the move with a probability of e^delta/T
+                    cur_state = max(cur_state -1, 1)
                     point.set_data([cur_state], [df['Reward'][cur_state]])
                     return point
-                else: # bad move
-                    if random.uniform(0, 1) < math.exp(changeAmount/T):
-                        cur_state = max(cur_state -1, 1)
-                        point.set_data([cur_state], [df['Reward'][cur_state]])
-                        return point
-            else: # we will check the neighbor after current
-                changeAmount = df["Reward"][cur_state+1] - df["Reward"][cur_state]
-                if changeAmount > 0: # good move
+        else: # we will check the neighbor after current
+            delta = df["Reward"][cur_state+1] - df["Reward"][cur_state] #calculate utility change (delta)
+            if delta > 0: # good move
+                cur_state = min(cur_state + 1, 98)
+                point.set_data([cur_state], [df['Reward'][cur_state]])
+                return point
+            else: #bad move
+                if random.uniform(0, 1) < math.exp(delta/T): # only make the move with a probability of e^delta/T
                     cur_state = min(cur_state + 1, 98)
                     point.set_data([cur_state], [df['Reward'][cur_state]])
                     return point
-                else: #bad move
-                    if random.uniform(0, 1) < math.exp(changeAmount/T):
-                        cur_state = min(cur_state + 1, 98)
-                        point.set_data([cur_state], [df['Reward'][cur_state]])
-                        return point
 
     return point
 
