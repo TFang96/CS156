@@ -8,6 +8,8 @@ import matplotlib.pyplot
 
 input_data = pandas.read_csv("ExampleTrainDataset.csv", usecols=["x1", "x2", "x3"]) #input data
 target_values = pandas.read_csv("ExampleTrainDataset.csv", usecols=["Y"]) # #outputs
+test_input_data = pandas.read_csv("ExampleTestDataset.csv", usecols=["x1", "x2", "x3"]) #input test data
+test_target_values = pandas.read_csv("ExampleTestDataset.csv", usecols=["Y"]) # #expected outputs for test
 
 lambdaVal = 0.01 # learning rate
 
@@ -20,9 +22,13 @@ for i in range(len(input_data)):
 
 batch_size = len(input_data) # get batch size
 
+test_size = len(test_input_data) # number of tests
+
 actual_outputs = []
 
 losses = []
+
+test_losses = []
 
 
 
@@ -60,5 +66,12 @@ def main():
     matplotlib.pyplot.ylabel("Loss Amount")
     matplotlib.pyplot.plot(range(1, iterations + 1), losses, marker="*")
     matplotlib.pyplot.show()
+
+    #Part 2b - Report test loss
+    for i in range(test_size):
+        actual_out = activationfunc(test_input_data.iloc[i, 0] * weights[0] + test_input_data.iloc[i, 1] * weights[1] + test_input_data.iloc[i, 2] * weights[2]) # compute actual output
+        test_losses.append(abs(test_target_values.iloc[i, 0] - actual_out))
+    for i in range(len(test_losses)):
+        print("Test " + str(i + 1) + ": Loss: " + str(test_losses[i]))
 
 main()
