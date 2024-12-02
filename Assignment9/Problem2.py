@@ -34,7 +34,7 @@ test_losses = []
 
 
 def activationfunc(x):
-    return pow(math.e, x) / (1 + pow(math.e, x))
+    return pow(math.e, x) / (1 + pow(math.e, -x))
 
 def activationfuncderiv(x):
     return activationfunc(x) * (1 - activationfunc(x))
