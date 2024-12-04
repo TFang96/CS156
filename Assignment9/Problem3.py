@@ -84,3 +84,30 @@ print("W1 (Input to Hidden Layer):", W1)
 print("b1 (Hidden Layer Bias):", b1)
 print("W2 (Hidden to Output Layer):", W2)
 print("b2 (Output Layer Bias):", b2)
+
+# Load the test dataset
+test_file_path = 'ExampleTestDataset.csv'  # Replace with the actual path to your test dataset
+test_data = pd.read_csv(test_file_path)
+
+# Separate features and target in the test dataset
+X_test = test_data[['x1', 'x2', 'x3']].values
+Y_test = test_data['Y'].values
+
+# Normalize test features using training data statistics
+X_test = (X_test - np.mean(X, axis=0)) / np.std(X, axis=0)
+
+# Define sigmoid activation function
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+# Perform forward pass to make predictions
+Z1_test = np.dot(X_test, W1) + b1
+A1_test = sigmoid(Z1_test)
+Z2_test = np.dot(A1_test, W2) + b2
+A2_test = sigmoid(Z2_test)
+
+# Compute test loss (mean squared error)
+test_loss = np.mean((A2_test - Y_test.reshape(-1, 1)) ** 2)
+
+# Print test loss
+print(f"Test Loss: {test_loss}")
